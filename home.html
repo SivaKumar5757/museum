@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv='cache-control' content='no-cache'> 
+    <meta http-equiv='expires' content='0'> 
+    <meta http-equiv='pragma' content='no-cache'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    
+    <title>MeritWay</title>
+    <link rel="icon" href="/static/logo.png" type="image/png">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/guest.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            overflow-x: hidden;
+            overflow-y: auto;
+            margin: 0; /* Reset default margin */
+        }
+        /* Style the vertical scrollbar for the entire window */
+        body {
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+
+        /* Customize the appearance of the scrollbar */
+        body::-webkit-scrollbar {
+            width: 5px; /* Width of the scrollbar */
+        }
+
+        body::-webkit-scrollbar-track {
+            background: #fff; /* Color of the track */
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background: #333; /* Color of the thumb */
+        }
+
+        body::-webkit-scrollbar-thumb:hover {
+            background: #333; /* Darker background on hover */
+        }
+
+        html, body, .container-fluid {
+            height: 100%;
+        }
+
+        .video-container-iframe {
+            display: flex;
+            flex-wrap: nowrap; /* Prevent wrapping */
+            overflow-x: auto; /* Enable horizontal scrolling */
+            overflow-y: hidden; /* Hide vertical scrollbar */
+            -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
+        }
+
+        .video-container-iframe::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for WebKit browsers */
+        }
+
+        .video-frame {
+            flex: 0 0 auto; /* Prevent flex items from shrinking */
+            width: 330px;
+            max-width: 100%; /* Ensure frame doesn't exceed container width */
+        }
+
+        .video-frame img {
+            width: 100%;
+            height: fit-content;
+            border-radius: 8px;
+        }
+
+        .video-frame h6, .video-frame p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap; /* Prevent wrapping */
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        hr {
+            margin: 20px 0; /* Add margin around the hr */
+            border-top: 3px solid #ccc;
+        }
+
+        /* Additional styles for the header and footer */
+        .header, .footer {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .header, .navbar {
+            padding: 5px;
+        }
+
+        .header .navbar-brand {
+            margin-right: 0px;
+        }
+
+        .header .btn {
+            margin-left: 10px;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+        .navbar-toggler {
+    color: #fff; /* Default color */
+    transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+.lenze-icon:hover,
+.lenze-icon:focus,
+.navbar-toggler:hover,
+.navbar-toggler:focus {
+    color: #999; /* Color when hovered or selected */
+}
+        /* Media query for small screens */
+        @media (min-width: 991.5px){
+            .header .search-bar {
+                display: flex !important;
+                width: 100%;
+                margin-right: auto;
+            }
+
+            .header .lenze-icon {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 991.5px) {
+            .header .search-bar {
+                display: none;
+                max-width: calc(90% - 100px);
+                flex-grow: 1;
+                margin-left: 50px;
+                position: absolute;
+            }
+
+            .header .lenze-icon {
+                display: block !important;
+                cursor: pointer;
+                left: calc(50% - 130px);
+                position: static;
+                
+            }
+
+            .navbar-nav .nav-link {
+                width: 200px !important;
+            }
+
+            .navbar-toggler{
+                border: none !important;
+                color: #fff !important;
+            }
+
+            .items{
+                position: absolute;
+                right: 0;
+                top: 60px;
+                z-index: 1;
+            }
+        }
+
+        .header .lenze-icon {
+            display: none;
+        }
+
+        /* Search bar styling */
+        .search-bar {
+            margin-left: 20px;
+            display: flex;
+            flex-grow: 1;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            max-width: calc(55% - 100px); /* Ensure the search bar doesn't exceed the remaining width */
+        }
+
+        .search-input {
+            flex-grow: 1;
+            padding: 10px 15px;
+            border-radius: 25px;
+            border: 1px solid #333;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            font-family: 'Optima', sans-serif; /* Use Optima font */
+            max-width: 100%; /* Ensure the input doesn't exceed the available space */
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #333;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-search {
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            background-color: #333;
+            color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            font-family: 'Optima', sans-serif; /* Use Optima font */
+        }
+
+        .btn-search:hover {
+            background-color: #555;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .video-frame:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff; 
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #999 !important;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-dark" style="margin-top: 5px;">
+                <div class="lenze-icon" onclick="toggleSearchBar()"><i class="bi bi-search h3"></i></div>
+                <a class="navbar-brand" href="#" style="font-family: monospace;"><img src="/static/logo.png" alt="logo" style="width: 40px; height: 40px; position: relative; bottom: 3px;"> MeritWay</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="font-size: xx-large;">
+                    ☰
+                </button>
+                <form class="form-inline search-bar">
+                    <input class="form-control mr-2 search-input" type="search" placeholder="🔎 Type something..." aria-label="Search">
+                    <button class="btn btn-search" type="submit">Search</button>
+                </form>
+                <div class="collapse navbar-collapse items" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="login" data-toggle="modal" data-target="#categoryModal" style="background-color: #333; padding-left: 16px; color: #fff; border-radius: 8px 8px 0px 0px;">Category</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login" style="background-color: #333; padding-left: 16px; color: #fff;">My Library</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login" style="background-color: #333; padding-left: 16px; color: #fff;">Silver</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login" style="background-color: #333; padding-left: 16px; color: #fff; border-radius: 0px 0px 8px 8px;">Log In</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Modal -->
+    <div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="categoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="categoryModalLabel">Select a Category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Add your category options here -->
+                    <select id="categorySelect" class="form-control">
+                        <option value="Category">All</option>
+                        <option value="Category 1">Category 1</option>
+                        <option value="Category 2">Category 2</option>
+                        <!-- Add more options for different categories if needed -->
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="saveCategory()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        {% for category in categories %}
+            <h2 style="color: #333; text-align: center; padding: 30px 0px 10px 0px;"> {{ category }} </h2>
+            <div class="video-container-iframe bg">
+                {% for course in courses[category] %}
+                    <a href="login" style="text-decoration: none; color: #333;">
+                        <div class="video-frame" style="background-color: #ffffff; border-radius: 8px; height: 325px; position: relative; width: auto; border: 1px solid #bfbfbf; margin-top: 20px; padding: 10px; transition: transform 0.3s ease-in-out;">
+                            <img style="border-radius: 8px; height: 200px; width: 330px;" src="{{ course.thumbnail_url }}" alt="Thumbnail for {{ course.title }}">
+                            <h5 style="padding: 10px 10px 0px 10px; font-family: sans-serif;">{{ course.title }}</h5>
+                            <h6 style="padding: 0 10px 10px 10px; font-family: sans-serif;">{{ course.author }}</h6>
+                            <h5 style="padding: 0px 10px 0 10px; font-family: sans-serif; display: inline; position: absolute; bottom: 0;"></h5>
+                            <h3 style="padding: 0px 20px 0 10px; font-family: sans-serif; display: inline; position: absolute; bottom: 0; right: 0;">{{ course.difficulty }}</h3>
+                        </div>
+                    </a>
+                    <div style="margin-right: 10px;"></div>
+                {% endfor %}
+                <div class="center" style="font-size: large; font-weight: 400;">End of Category <h1>⚝</h1></div>
+            </div>
+            <hr style="border-top: 3px solid #ccc;">
+        {% endfor %}
+    </main>
+
+    <footer class="footer" style="height: fit-content; display: flex; justify-content: center; align-items: center; padding: 50px;">
+        <div class="container" style="color: #fff;">
+            <p>&copy; 2024 Professional Webpage. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function saveCategory() {
+            var selectedCategory = document.getElementById("categorySelect").value;
+            document.getElementById("categoryButton").innerText = selectedCategory;
+            $('#categoryModal').modal('hide');
+        }
+
+        function toggleSearchBar() {
+    var searchBar = document.querySelector('.search-bar');
+    var lenzeIcon = document.querySelector('.lenze-icon');
+
+    if (searchBar.style.display === 'none' || searchBar.style.display === '') {
+        lenzeIcon.style.top = '5px'; // Adjust the top position when search bar is displayed
+        searchBar.style.display = 'block'; // Show search bar
+    } else {
+        lenzeIcon.style.top = ''; // Reset top position when search bar is hidden
+        searchBar.style.display = 'none'; // Hide search bar
+    }
+}
+
+
+        document.addEventListener("click", function(event) {
+            var navbarToggler = document.querySelector(".navbar-toggler");
+            var navbarNav = document.querySelector(".navbar-collapse");
+
+            if (!navbarNav.contains(event.target) && !navbarToggler.contains(event.target) && navbarNav.classList.contains("show")) {
+                navbarToggler.click();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+/* Global Styles */
+body {
+  height: fit-content;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+    background: linear-gradient(90deg, #1E2931,#353842);
+  }
+  .drocol0{
+    position: absolute; right: 235px; margin-right: 180px;font-weight: 600;
+  }
+  .drocol1{
+    position: absolute; right: 180px; margin-right: 150px;font-weight: 600;
+  }
+  .drocol2{
+    position: absolute; right: 115px; margin-right: 120px;font-weight: 600;
+  }
+  .drocol3{
+    position: absolute; right: 50px; margin-right: 90px;font-weight: 600;
+  }
+  .drocol4{
+    position: absolute; right: 0; margin-right: 60px;font-weight: 600;
+  }
+  .container {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .moveright{
+    position: absolute;
+    top: 20px; /* Adjust as needed */
+    right: 20px;
+  }
+.contmu{
+    background-color: #ffffff00;
+    border: 1px solid #fff;
+    border-radius: 8px;
+    height: fit-content;
+    width: calc(100% - 60px);
+    margin-left: 33px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+    flex-direction: column;
+    padding: 20px 0px;
+    position: relative;
+    height: fit-content;
+}
+.contwo{
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  margin-bottom: 100px;
+}
+
+.lineform{
+  width: 100%;
+  padding-left: 10px;
+margin: 20px 0px;
+  background-color: #1e293100 !important;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #323232;
+  text-shadow: none;
+  color: #000000;
+  
+}
+.lineform:focus{
+  border-bottom: 2px solid #000000;
+  background-color: #1e293100;
+
+}
+.hovcar2{
+  height: 60vh;
+  width: 70%;
+  border: 1px solid #fff;
+  background-position: center;
+  border-radius: 8px;
+  background-size: 100% 100%;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+.hovcar{
+  height: 70vh;
+  width: 10%;
+  border: 1px solid #fff;
+  background-position: center;
+  background-size: 900px 100%;
+  display: flex;
+  justify-content: center;
+
+  transition: all 1s ease;
+}
+.hovcar:hover{
+    width:50%;
+    background-size: 100% 100%;
+
+
+}
+.hovcar:hover .shcont{
+
+  opacity: 1;
+
+}
+.shcont{
+background-color: #1b1b1b91;
+border-radius: 8px;
+position: absolute;
+height: 30%;
+width: 80%;
+z-index: 2;
+bottom: 10px;
+
+opacity: 0;
+transition: opacity 1s ease;
+
+
+}
+
+ .bg{
+  background-color: #fff;
+ }
+  
+  /* Add this CSS to style the "Sign In" button */
+  .btn-secondary {
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #fff;
+    color: #333;
+  }
+  .width{
+    top: 20px;
+    left: 65px;
+  }
+
+.center{
+  margin-top: 100px;
+  text-align:center;
+  padding: 20px;
+}
+
+.logo-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%; /* Makes the logo circular */
+}
+.logo {
+  margin: 0;
+  font-size: 24px;
+  color: #fff;
+}
+
+
+
+   .fle{
+    display: flex;
+    align-items: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+@media (max-width: 991.5px) {
+    
+
+  .drocol0{
+      position: relative; right: 0; margin-right: 0;
+  }
+  .drocol1{
+      position: relative; right: 0; margin-right: 0;
+  }
+  .drocol2{
+      position: relative; right: 0; margin-right: 0;
+  }
+  .drocol3{
+      position: relative; right: 0; margin-right: 0;
+  }
+  .drocol4{
+      position: relative; right: 0; margin-right: 0;
+  }
+  .fle{
+      display: block;
+      align-items: normal;
+
+  }
+  .cont{
+      margin-top: 0px;
+  }
+}
+@media (max-width: 991.5px) {
+
+  .hovcar{
+
+    width: 20%;
+
+
+  }
+  .hovcar:hover{
+    width:200%;
+    background-size: 100% 100%;
+
+
+}
+
+}

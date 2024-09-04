@@ -1,0 +1,160 @@
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+.moveright{
+  position: absolute;
+  top: 20px; /* Adjust as needed */
+  right: 20px;
+}
+.header {
+  background-color: #333;
+  height: 75px;
+}
+
+/* Add this CSS to style the "Sign In" button */
+.btn-secondary {
+  background-color: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+}
+
+.btn-secondary:hover {
+  background-color: #fff;
+  color: #333;
+}
+.width{
+  top: 20px;
+  left: 50px;
+}
+
+.logo {
+  margin: 0;
+  font-size: 24px;
+  color: #fff;
+}
+
+/* Add this CSS to make the logo circular */
+/* Add this CSS to style the logo button */
+.dropdown-toggle {
+  border-radius: 50%; /* Makes the button circular */
+  overflow: hidden; /* Ensures the dropdown arrow is within the circle */
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5); /* Adds shadow to the button */
+  padding: 0; /* Remove default padding */
+  width: 40px; /* Set width equal to the logo */
+  height: 40px; /* Set height equal to the logo */
+  background-color: transparent !important; /* Remove default background color */
+  border: none;
+}
+
+/* Add this CSS to style the logo image inside the button */
+.logo-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%; /* Makes the logo circular */
+}
+
+
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #fff;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #ccc;
+  background-color: #ccc; /* Add background color on hover */
+}
+
+.dropdown-menu {
+  background-color: #333;
+}
+
+.dropdown-menu .dropdown-item {
+  color: #fff;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: #333;
+}
+
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+.moveright{
+  position: absolute;
+  top: 20px; /* Adjust as needed */
+  right: 20px;
+}
+.header {
+  background-color: #31363F;
+  height: 75px;
+}
+.bg{
+background-color: #fff;
+}
+
+/* Add this CSS to style the "Sign In" button */
+.btn-secondary {
+  background-color: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+}
+/* Add this CSS at the end of your existing styles */
+
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  z-index: -1; /* Make sure the overlay stays behind other content */
+  pointer-events: none; /* Allow clicks to pass through the overlay to the content underneath */
+}
+
+.width{
+  top: 20px;
+  left: 65px;
+}
+/* Actual video iframe */
+.video-container-iframe {
+  width: auto;
+  height: 350px;
+  padding-left: 20px;
+}
+
+/* Styling for video details */
+.video-details {
+padding:10px 10px 10px 20px;
+}
+
+.video-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.video-description {
+  font-size: 16px;
+  color: #666;
+}
+.center{
+  margin-top: 100px;
+  text-align:center;
+  padding: 20px;
+}
+

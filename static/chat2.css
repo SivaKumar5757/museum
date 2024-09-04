@@ -1,0 +1,100 @@
+/* Add this CSS at the end of your existing styles */
+
+#chat-box {
+    width: 100%;
+    max-width: 500px;
+    height: 450px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    overflow-y: auto;
+}
+
+#chat-box::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
+
+#chat-box::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Background of the scrollbar track */
+}
+
+#chat-box::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the scrollbar thumb */
+    border-radius: 0px; /* Round edges of the scrollbar thumb */
+}
+
+#chat-box::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color of the scrollbar thumb when hovered */
+}
+
+/* Optional: For Firefox */
+
+.message-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 8px;
+}
+
+.bot-message,
+.user-message {
+    font-size: medium;
+    max-width: 70%;
+    word-wrap: break-word;
+    padding: 8px 8px 8px 8px; /* Add padding-bottom to make space for the timestamp */
+    border-radius: 8px;
+    position: relative;
+    display: inline-block; /* Ensure it behaves as a block element for proper wrapping */
+}
+
+.user-message {
+    background-color: #0084ff;
+    color: #fff;
+    margin-left: auto; /* Push the user message to the right */
+    padding-right: 10px;
+}
+
+.bot-message {
+    background-color: #e4e6eb;
+    color: #000;
+    margin-right: auto; /* Push the bot message to the left */
+    padding-left: 10px;
+}
+
+.message-time {
+    font-size: 0.75em;
+    color: #b4b5b4;
+    white-space: nowrap; /* Prevent wrapping */
+    position: absolute; /* Absolute positioning for proper alignment */
+    bottom: 3px; /* Position it slightly above the bottom to avoid padding */
+    right: 3px; /* Aligns the time to the bottom right of the message */
+}
+
+#input-container {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#user-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+#send-btn {
+    padding: 10px 20px;
+    border: none;
+    background: #0084ff;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#send-btn:hover {
+    background: #005bb5;
+}
