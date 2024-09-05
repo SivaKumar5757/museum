@@ -8,8 +8,11 @@ import coursedata
 from chatbot import get_response
 from chatbot import plac
 from reportlab.lib.pagesizes import letter
+from reportlab.lib import colors
 from reportlab.lib.units import inch
-from reportlab.pdfgen import canvas
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+
 import io
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 't\(,$}K*4;pXmxdL:3wyS^hd<g0$a`Os'
@@ -107,49 +110,124 @@ quantity = ""
 mobile = ""
 email = ""
 museum_name = ""
+date=""
+nationality=""
+
 
 @app.route("/user/bookticket/payment/<path:subpath>/done", methods=['POST'])
 def done(subpath):
-    global name,quantity,mobile,museum_name,email
+    global name,quantity,mobile,museum_name,email,date,nationality
     name = request.form['name'].title()
     quantity = request.form['quantity'].title()
     mobile = request.form['mobile'].title()
     email = request.form['email']
+    date = request.form['date']  # For the date of the ticket
+    nationality = request.form['nationality'].title()  # For nationality selection
+
     museum_name=subpath
     # print(name,quan,mob,email)
     return render_template("done.html", subpath=subpath)
 
 @app.route('/download_ticket')
 def download_ticket():
+    ticket_price = 100
+    if nationality.lower() == "foreigner":
+        ticket_price *= 0.5  # Apply 50% discount
 
-    ticket_price = 100 
     total_price = ticket_price * int(quantity)
 
     buffer = io.BytesIO()
-    p = canvas.Canvas(buffer, pagesize=letter)
-    width, height = letter
+    doc = SimpleDocTemplate(buffer, pagesize=letter)
+    elements = []
 
-    p.setFont("Helvetica-Bold", 20)
-    p.drawString(1 * inch, height - 1.5 * inch, f"{museum_name} Ticket")
-    
-    p.setFont("Helvetica", 12)
-    p.drawString(1 * inch, height - 2 * inch, f"Name: {name}")
-    p.drawString(1 * inch, height - 2.3 * inch, f"Quantity of Tickets: {quantity}")
-    p.drawString(1 * inch, height - 2.6 * inch, f"Mobile Number: {mobile}")
-    p.drawString(1 * inch, height - 2.9 * inch, f"Email: {email}")
+    styles = getSampleStyleSheet()
 
-    p.setFont("Helvetica-Bold", 12)
-    p.drawString(1 * inch, height - 3.7 * inch, f"Ticket Price: Rs {ticket_price} per ticket")
-    p.drawString(1 * inch, height - 4 * inch, f"Total Price: Rs {total_price}")
+    # Define custom styles
+    title_style = ParagraphStyle(
+        name="TitleStyle",
+        fontSize=24,
+        leading=28,
+        alignment=1,  # Center alignment
+        textColor=colors.darkblue,
+        spaceAfter=14
+    )
 
-    p.setFont("Helvetica-Oblique", 10)
-    p.drawString(1 * inch, height - 4.5 * inch, "Thank you for your purchase!")
-    p.drawString(1 * inch, height - 4.8 * inch, "Please carry this ticket with you to the museum.")
-    p.drawString(1 * inch, height - 6 * inch, "Made by Code Alchemist")
+    label_style = ParagraphStyle(
+        name="LabelStyle",
+        fontSize=14,
+        leading=17,
+        textColor=colors.darkred,
+        spaceAfter=6,
+        alignment=1  # Center alignment
+    )
 
+    detail_style = ParagraphStyle(
+        name="DetailStyle",
+        fontSize=12,
+        leading=15,
+        textColor=colors.black,
+        spaceAfter=10,
+        alignment=1  # Center alignment
+    )
 
-    p.showPage()
-    p.save()
+    footer_style = ParagraphStyle(
+        name="FooterStyle",
+        fontSize=10,
+        leading=12,
+        textColor=colors.grey,
+        spaceAfter=6,
+        alignment=1  # Center alignment
+    )
+
+    # Draw border around the ticket
+    def draw_border(canvas, doc):
+        canvas.saveState()
+        canvas.setStrokeColor(colors.black)
+        canvas.setLineWidth(2)
+        canvas.rect(0.5 * inch, 0.5 * inch, 7.5 * inch, 10 * inch)  # Outer border
+        canvas.setLineWidth(1)
+        canvas.rect(0.6 * inch, 0.6 * inch, 7.3 * inch, 9.8 * inch)  # Inner border
+        canvas.restoreState()
+
+    # Add ticket title
+    title = Paragraph(f"<b>{museum_name}</b>", title_style)
+    elements.append(title)
+
+    # Spacer
+    elements.append(Spacer(1, 0.5 * inch))
+
+    # Add ticket details in a single line, centered
+    data = [
+        [Paragraph(f"<b>Name:</b>", label_style), Paragraph(name, detail_style)],
+        [Paragraph(f"<b>Quantity:</b>", label_style), Paragraph(quantity, detail_style)],
+        [Paragraph(f"<b>Mobile:</b>", label_style), Paragraph(mobile, detail_style)],
+        [Paragraph(f"<b>Email:</b>", label_style), Paragraph(email, detail_style)],
+        [Paragraph(f"<b>Date:</b>", label_style), Paragraph(date, detail_style)],
+        [Paragraph(f"<b>Nationality:</b>", label_style), Paragraph(nationality, detail_style)],
+        [Paragraph(f"<b>Ticket Price:</b>", label_style), Paragraph(f"Rs {ticket_price:.2f} per ticket", detail_style)],
+        [Paragraph(f"<b>Total Price:</b>", label_style), Paragraph(f"Rs {total_price:.2f}", detail_style)],
+    ]
+
+    table = Table(data, colWidths=[2.75 * inch, 4.75 * inch])
+    table.setStyle(TableStyle([
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.darkred),
+        ('TEXTCOLOR', (1, 0), (-1, -1), colors.black),
+        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+        ('FONTSIZE', (0, 0), (-1, -1), 12),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 12),
+    ]))
+    elements.append(table)
+
+    # Footer
+    footer = Paragraph("This ticket must be retained", footer_style)
+    elements.append(footer)
+
+    footer_note = Paragraph("Thank you for your purchase! Please carry this ticket with you to the museum.", footer_style)
+    elements.append(footer_note)
+
+    doc.build(elements, onFirstPage=draw_border)
 
     pdf = buffer.getvalue()
     buffer.close()
@@ -159,8 +237,6 @@ def download_ticket():
     response.headers['Content-Disposition'] = 'attachment; filename=Museum_Ticket.pdf'
 
     return response
-
-
 
 if __name__ == '__main__':
     with app.app_context():
